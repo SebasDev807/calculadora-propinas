@@ -1,4 +1,4 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { ChangeEvent } from "react";
 import type { TipOption } from "../interfaces";
 
 const tipOptions: TipOption[] = [
@@ -8,7 +8,7 @@ const tipOptions: TipOption[] = [
 ];
 
 interface TipPercentageFormProps {
-  setTip: Dispatch<SetStateAction<number>>;
+  setTip: (tip: TipOption["value"]) => void
   tip: number;
 }
 
@@ -29,10 +29,9 @@ export const TipPercentageForm = ({ setTip, tip }: TipPercentageFormProps) => {
             key={tipOption.id}
             htmlFor={tipOption.id}
             className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-300
-              ${
-                tip === tipOption.value
-                  ? "bg-teal-100 border-teal-400 dark:bg-teal-700/40 dark:border-teal-500"
-                  : "bg-gray-50 border-gray-300 dark:bg-gray-800 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+              ${tip === tipOption.value
+                ? "bg-teal-100 border-teal-400 dark:bg-teal-700/40 dark:border-teal-500"
+                : "bg-gray-50 border-gray-300 dark:bg-gray-800 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
               }`}
           >
             <span className="font-medium">{tipOption.label}</span>

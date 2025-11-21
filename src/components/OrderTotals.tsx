@@ -10,12 +10,14 @@ interface OrderTotalsProps {
 }
 
 export const OrderTotals = ({ order, tip, placeOrder }: OrderTotalsProps) => {
+  
   const subtotalAmount = useMemo(
     () => order.reduce((acc, item) => acc + item.price * item.quantity, 0),
     [order]
   );
 
   const tipAmount = useMemo(() => subtotalAmount * tip, [tip, subtotalAmount]);
+  
   const totalAmount = useMemo(
     () => subtotalAmount + tipAmount,
     [subtotalAmount, tipAmount]
